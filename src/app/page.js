@@ -41,6 +41,14 @@ const UploadButton = styled(Button)(({ theme }) => ({
   fontSize: "1.2rem",
 }));
 
+const gradientTextStyle = {
+  background: 'linear-gradient(90deg, #fff, #de0073)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
+  color: 'transparent',
+};
+
 // Fashion quotes for inspiration
 const fashionQuotes = [
   "Style is a way to say who you are without having to speak.",
@@ -161,10 +169,11 @@ export default function Home() {
               variant="h2"
               color="inherit"
               gutterBottom
+              sx={gradientTextStyle}
             >
               Discover Your Style
             </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
+            <Typography variant="h5" paragraph sx={gradientTextStyle}>
               {randomQuote}
             </Typography>
             <Box sx={{ mt: 4 }}>
