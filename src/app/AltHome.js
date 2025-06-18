@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
-import { Box, Typography, Button, Grid, useTheme } from '@mui/material';
+import React from 'react';
+import { Box, Typography, Button, Grid } from '@mui/material';
 import { styled } from '@mui/system';
 
 const HeroContainer = styled(Box)(({ theme }) => ({
-  background: 'linear-gradient(180deg, #0a0a0a 0%, #111 100%)',
-  color: '#f2f2f2',
+  background: '#0b0b0b',
+  color: '#f5f5f5',
   minHeight: '100vh',
   padding: theme.spacing(8, 4),
   display: 'flex',
@@ -12,75 +12,87 @@ const HeroContainer = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
 }));
 
-const NeonText = styled(Typography)(({ color = '#00ffcc' }) => ({
-  fontSize: '3rem',
+const Title = styled(Typography)(({ theme }) => ({
+  fontFamily: '"Playfair Display", serif',
   fontWeight: 700,
-  textShadow: `0 0 6px ${color}, 0 0 20px ${color}`,
+  fontSize: '3.2rem',
+  lineHeight: 1.2,
+  color: '#f5f5f5',
 }));
 
-const HeroButton = styled(Button)(({ theme }) => ({
+const SubText = styled(Typography)(({ theme }) => ({
+  fontFamily: '"Inter", sans-serif',
+  color: '#bbb',
+  fontSize: '1.2rem',
+  marginTop: theme.spacing(2),
+  maxWidth: 500,
+}));
+
+const CTAButton = styled(Button)(({ theme }) => ({
   marginTop: theme.spacing(4),
   padding: theme.spacing(1.5, 4),
   fontSize: '1rem',
   borderRadius: '50px',
-  background: '#00ffcc',
+  backgroundColor: '#d4af37', // Champagne gold
   color: '#000',
+  fontWeight: 600,
   textTransform: 'uppercase',
-  boxShadow: '0 0 10px #00ffcc, 0 0 20px #00ffcc',
   '&:hover': {
-    background: '#0ff',
-    boxShadow: '0 0 20px #0ff, 0 0 30px #0ff',
+    backgroundColor: '#e5c67a',
   },
 }));
 
-export default function AltHome({ onBack }) {
-  const theme = useTheme();
-  const fileInputRef = useRef();
+const BottomBar = styled(Box)(({ theme }) => ({
+  position: 'fixed',
+  left: 0,
+  bottom: 0,
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  background: 'rgba(11,11,11,0.95)',
+  padding: theme.spacing(2, 0),
+  zIndex: 2000,
+}));
 
+export default function AltHome({ onBack }) {
   return (
-    <HeroContainer>
-      <Grid container spacing={4} alignItems="center">
-        <Grid item xs={12} md={7}>
-          <NeonText variant="h1" color="#00ffcc">
-            Style, Curated.
-          </NeonText>
-          <Typography variant="h5" sx={{ mt: 2, color: '#ccc' }}>
-            Your AI fashion advisor for next-level drip. Smart recs, bold looks, new-money vibes.
-          </Typography>
-          <HeroButton
-            variant="contained"
-            onClick={() => fileInputRef.current && fileInputRef.current.click()}
-          >
-            Get Styled
-          </HeroButton>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            style={{ display: 'none' }}
-            // You can add onChange here to handle uploads
-          />
-          {onBack && (
-            <Button sx={{ mt: 2, ml: 2 }} onClick={onBack} variant="outlined" color="secondary">
-              Back to Main Home
-            </Button>
-          )}
+    <>
+      <HeroContainer>
+        <Grid container spacing={4} alignItems="center">
+          <Grid item xs={12} md={7}>
+            <Title variant="h1">
+              Redefine Your Wardrobe
+            </Title>
+            <SubText variant="body1">
+              AI-powered fashion advice for bold, modern luxury. Discover your personal look — curated for confidence, tailored for success.
+            </SubText>
+            <CTAButton variant="contained">
+              Get Styled Now
+            </CTAButton>
+          </Grid>
+          <Grid item xs={12} md={5}>
+            <Box
+              component="img"
+              src="/assets/fashion-avatar-elegant.png"
+              alt="Stylish model avatar"
+              sx={{
+                width: '100%',
+                maxWidth: 400,
+                borderRadius: '16px',
+                boxShadow: '0 20px 40px rgba(212, 175, 55, 0.2)',
+                objectFit: 'cover',
+              }}
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} md={5}>
-          <Box
-            component="img"
-            src="/assets/fashion-avatar.png"
-            alt="Fashion avatar"
-            sx={{
-              width: '100%',
-              maxWidth: 400,
-              borderRadius: '16px',
-              boxShadow: '0 0 20px rgba(0, 255, 204, 0.4)',
-              filter: 'drop-shadow(0 0 8px #0ff)',
-            }}
-          />
-        </Grid>
-      </Grid>
-    </HeroContainer>
+      </HeroContainer>
+      {onBack && (
+        <BottomBar>
+          <Button onClick={onBack} variant="outlined" color="secondary">
+            Back to Main Home
+          </Button>
+        </BottomBar>
+      )}
+    </>
   );
 } 

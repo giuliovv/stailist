@@ -60,6 +60,18 @@ const fashionQuotes = [
   "Fashion is what you're offered four times a year by designers. Style is what you choose.",
 ];
 
+const BottomBar = styled(Box)(({ theme }) => ({
+  position: 'fixed',
+  left: 0,
+  bottom: 0,
+  width: '100%',
+  display: 'flex',
+  justifyContent: 'center',
+  background: 'rgba(11,11,11,0.95)',
+  padding: theme.spacing(2, 0),
+  zIndex: 2000,
+}));
+
 export default function Home() {
   const [showAlt, setShowAlt] = useState(false);
   const [preview, setPreview] = useState(null);
@@ -140,12 +152,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Toggle Button for switching home styles */}
-      <Box sx={{ position: 'fixed', top: 16, right: 16, zIndex: 2000 }}>
-        <Button variant="contained" color="secondary" onClick={() => setShowAlt(true)}>
-          Try Neon Home
-        </Button>
-      </Box>
       {/* App Bar */}
       <AppBar position="static" color="default" elevation={1}>
         <Toolbar>
@@ -300,6 +306,11 @@ export default function Home() {
           </Paper>
         )}
       </Container>
+      <BottomBar>
+        <Button variant="contained" color="secondary" onClick={() => setShowAlt(true)}>
+          Try Alt Home
+        </Button>
+      </BottomBar>
     </>
   );
 }
