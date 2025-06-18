@@ -42,7 +42,7 @@ const UploadButton = styled(Button)(({ theme }) => ({
 }));
 
 const gradientTextStyle = {
-  background: 'linear-gradient(180deg, #fff, #de0073)',
+  background: 'linear-gradient(0deg, #fff, #de0073)',
   WebkitBackgroundClip: 'text',
   WebkitTextFillColor: 'transparent',
   backgroundClip: 'text',
