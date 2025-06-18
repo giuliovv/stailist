@@ -169,7 +169,6 @@ export default function Home() {
               variant="h2"
               color="inherit"
               gutterBottom
-              sx={gradientTextStyle}
             >
               Discover Your Style
             </Typography>
