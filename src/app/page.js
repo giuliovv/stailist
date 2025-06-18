@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import {
   AppBar,
@@ -11,8 +11,10 @@ import {
   Box,
   Paper,
   useTheme,
+  Grid
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
+import AltHome from "./AltHome";
 
 // Styled components
 const HeroSection = styled(Paper)(({ theme }) => ({
@@ -59,6 +61,7 @@ const fashionQuotes = [
 ];
 
 export default function Home() {
+  const [showAlt, setShowAlt] = useState(false);
   const [preview, setPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -131,8 +134,18 @@ export default function Home() {
     }
   }
 
+  if (showAlt) {
+    return <AltHome onBack={() => setShowAlt(false)} />;
+  }
+
   return (
     <>
+      {/* Toggle Button for switching home styles */}
+      <Box sx={{ position: 'fixed', top: 16, right: 16, zIndex: 2000 }}>
+        <Button variant="contained" color="secondary" onClick={() => setShowAlt(true)}>
+          Try Neon Home
+        </Button>
+      </Box>
       {/* App Bar */}
       <AppBar position="static" color="default" elevation={1}>
         <Toolbar>
