@@ -54,17 +54,27 @@ const BottomBar = styled(Box)(({ theme }) => ({
   zIndex: 2000,
 }));
 
+const avatarImages = [
+  '/assets/avatarF.jpg',
+  '/assets/avatarM.jpg',
+];
+
+function getRandomAvatar() {
+  return avatarImages[Math.floor(Math.random() * avatarImages.length)];
+}
+
 export default function AltHome({ onBack }) {
+  const avatarSrc = React.useMemo(getRandomAvatar, []);
   return (
     <>
       <HeroContainer>
         <Grid container spacing={4} alignItems="center">
           <Grid item xs={12} md={7}>
             <Title variant="h1">
-              Redefine Your Wardrobe
+              Style, Curated.
             </Title>
             <SubText variant="body1">
-              AI-powered fashion advice for bold, modern luxury. Discover your personal look — curated for confidence, tailored for success.
+                AI-powered fashion advisor for next-level drip. Smart recs, bold looks, new-money vibes.
             </SubText>
             <CTAButton variant="contained">
               Get Styled Now
@@ -73,7 +83,7 @@ export default function AltHome({ onBack }) {
           <Grid item xs={12} md={5}>
             <Box
               component="img"
-              src="/assets/fashion-avatar-elegant.png"
+              src={avatarSrc}
               alt="Stylish model avatar"
               sx={{
                 width: '100%',
